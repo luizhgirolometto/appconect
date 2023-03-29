@@ -6,6 +6,11 @@ const functions = require("firebase-functions");
 const admin = require('firebase-admin');
 const serviceAccount = require('./arduinocontrolpage-firebase-adminsdk-50uhx-681687aac4.json');
 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://arduinocontrolpage-default-rtdb.europe-west1.firebasedatabase.app/'
+});
+
 
 app.use(express.static(__dirname + "/"));
 
