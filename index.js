@@ -25,12 +25,16 @@ app.post("/webhook", (req, res) => {
   });
   req.on("end", () => {
   
-    const database = admin.database();
-    const ref = database.ref('test/int');
-    ref.set(1);
     
     console.log("Recebido webhook:", body);
     res.sendStatus(200);
+
+    const database = admin.database();
+    const ref = database.ref('test/int');
+    ref.set(1);
+
+    console.log(ref);
+    
 
   });
 });
