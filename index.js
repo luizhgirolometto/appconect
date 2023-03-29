@@ -1,6 +1,11 @@
-const functions = require("firebase-functions");
 const express = require("express");
 const app = express();
+
+//firebase
+const functions = require("firebase-functions");
+const admin = require('firebase-admin');
+const serviceAccount = require('./arduinocontrolpage-firebase-adminsdk-50uhx-681687aac4.json');
+
 
 app.use(express.static(__dirname + "/"));
 
@@ -14,8 +19,14 @@ app.post("/webhook", (req, res) => {
     body += chunk.toString();
   });
   req.on("end", () => {
+  
+    const database = admin.database();
+    const ref = database.ref('test/int');
+    ref.set(1);
+    
     console.log("Recebido webhook:", body);
     res.sendStatus(200);
+
   });
 });
 
