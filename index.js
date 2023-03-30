@@ -43,7 +43,7 @@ app.post("/webhook", (req, res) => {
     res.sendStatus(200);
 
     
-      app.post(ref.set("TRUE"));
+      app.post(ref.set("1"));
       console.log("caiu aqui")
    
   });
