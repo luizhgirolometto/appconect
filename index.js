@@ -1,15 +1,28 @@
 const express = require("express");
 const app = express();
+const fs = require ('fs');
+let url = 'https://arduinocontrolpage-default-rtdb.europe-west1.firebasedatabase.app/test/int/.json';
+
+const data = {
+  int: '1',
+}
 
 //firebase
 const functions = require("firebase-functions");
 const admin = require('firebase-admin');
 const serviceAccount = require('./arduinocontrolpage-firebase-adminsdk-50uhx-681687aac4.json');
+const { database } = require("firebase-admin");
+const { getDatabase } = require ('firebase-admin/database')
+
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://arduinocontrolpage-default-rtdb.europe-west1.firebasedatabase.app/'
+   credential: admin.credential.cert(serviceAccount),
+   databaseURL: 'https://arduinocontrolpage-default-rtdb.europe-west1.firebasedatabase.app/'
 });
+
+
+const db = admin.database();
+const ref = db.ref('test/int');
 
 
 app.use(express.static(__dirname + "/"));
@@ -28,12 +41,9 @@ app.post("/webhook", (req, res) => {
     
     console.log("Recebido webhook:", body);
     res.sendStatus(200);
-
-    const database = admin.database();
-    const ref = database.ref('test/int');
+  
     ref.set(1);
 
-    console.log(ref);
     
 
   });
