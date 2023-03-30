@@ -4,7 +4,7 @@ const fs = require ('fs');
 let url = 'https://arduinocontrolpage-default-rtdb.europe-west1.firebasedatabase.app/test/int/.json';
 
 const data = {
-  int: '1',
+  int: 1,
 }
 
 //firebase
