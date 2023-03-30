@@ -42,15 +42,10 @@ app.post("/webhook", (req, res) => {
     console.log("Recebido webhook:", body);
     res.sendStatus(200);
 
-    try {
+    
       app.post(ref.set("TRUE"));
       console.log("caiu aqui")
-    } catch (error) {
-      
-      console.error(error);
-      
-    }  
-
+   
   });
 });
 
