@@ -44,7 +44,7 @@ app.post("/webhook", (req, res) => {
 
     try {
       app.post(ref.set(1));
-
+      console.log("caiu aqui")
     } catch (error) {
       
       console.error(error);
