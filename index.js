@@ -24,8 +24,6 @@ admin.initializeApp({
 const db = admin.database();
 const ref = db.ref('test/int');
 
-console.log(ref);
-
 
 app.use(express.static(__dirname + "/"));
 
