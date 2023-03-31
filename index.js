@@ -3,6 +3,7 @@ const app = express();
 const fs = require ('fs');
 let url = 'https://arduinocontrolpage-default-rtdb.europe-west1.firebasedatabase.app/test/int/.json';
 
+
 const data = {
   int: 1,
 }
@@ -22,7 +23,7 @@ admin.initializeApp({
 
 
 const db = admin.database();
-const ref = db.ref('test/int');
+const ref = db.ref('test');
 
 
 app.use(express.static(__dirname + "/"));
@@ -37,14 +38,15 @@ app.post("/webhook", (req, res) => {
     body += chunk.toString();
   });
   req.on("end", () => {
-  
+    
+    app.post(ref.set(data));
+    console.log("caiu aqui")
     
     console.log("Recebido webhook:", body);
     res.sendStatus(200);
 
     
-      app.post(ref.set(data));
-      console.log("caiu aqui")
+     
    
   });
 });
