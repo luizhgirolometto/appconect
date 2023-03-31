@@ -39,7 +39,7 @@ app.post("/webhook", (req, res) => {
   });
   req.on("end", () => {
     
-    app.post(ref.set(data));
+    app.put(ref.set(data));
     console.log("caiu aqui")
     
     console.log("Recebido webhook:", body);
