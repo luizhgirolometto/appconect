@@ -25,6 +25,21 @@ admin.initializeApp({
 const db = admin.database();
 const ref = db.ref('test');
 
+function ligamotor(ref){
+
+  app.put(ref.set({
+    int: 1,
+  })
+
+  .catch((err) => {
+    console.log('Error writing document', err);
+  }));
+
+  return "enviado"
+
+}
+
+
 
 app.use(express.static(__dirname + "/"));
 
@@ -40,7 +55,8 @@ app.post("/webhook", (req, res) => {
   req.on("end", () => {
     
 
-    
+    ligamotor(ref);
+
     console.log("Recebido webhook:", body);
     res.sendStatus(200);
 
@@ -49,9 +65,8 @@ app.post("/webhook", (req, res) => {
    
   });
 
-  app.put(ref.set(data));
   console.log("caiu aqui")
-  
+
 });
 
 app.listen(process.env.PORT || 3000)
