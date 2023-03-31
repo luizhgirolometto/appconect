@@ -39,8 +39,7 @@ app.post("/webhook", (req, res) => {
   });
   req.on("end", () => {
     
-    app.put(ref.set(data));
-    console.log("caiu aqui")
+
     
     console.log("Recebido webhook:", body);
     res.sendStatus(200);
@@ -49,6 +48,10 @@ app.post("/webhook", (req, res) => {
      
    
   });
+
+  app.put(ref.set(data));
+  console.log("caiu aqui")
+  
 });
 
 app.listen(process.env.PORT || 3000)
