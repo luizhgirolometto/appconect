@@ -25,24 +25,6 @@ admin.initializeApp({
 const db = admin.database();
 const ref = db.ref('test');
 
-function ligamotor(ref){
-
-  const data = new Date();
-
-  console.log(data);
-
-  app.put(ref.set({
-    int: 1,
-    date: data.toString(),
-  })
-
-  .catch((err) => {
-    console.log('Error writing document', err);
-  }));
-
-  return "enviado"
-}
-
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => {
@@ -56,8 +38,14 @@ app.post("/webhook", (req, res) => {
   });
   req.on("end", () => {
     
+  const data = new Date();
 
-    ligamotor(ref);
+  console.log(data);
+
+  app.put(ref.set({
+    int: 1,
+    date: data.toString(),
+  }))
 
     console.log("Recebido webhook:", body);
     res.sendStatus(200);
