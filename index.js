@@ -41,10 +41,7 @@ function ligamotor(ref){
   }));
 
   return "enviado"
-
 }
-
-
 
 app.use(express.static(__dirname + "/"));
 
