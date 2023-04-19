@@ -27,8 +27,13 @@ const ref = db.ref('test');
 
 function ligamotor(ref){
 
+  const data = new Date();
+
+  console.log(data);
+
   app.put(ref.set({
     int: 1,
+    date: data.toString(),
   })
 
   .catch((err) => {
